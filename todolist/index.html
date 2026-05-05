@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>To do list</title>
+
+<!-- ambil font -->
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- ini file css -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ini halaman login -->
+<div id="auth" class="auth">
+  <div class="card">
+    <h2>To Do List</h2>
+
+    <!-- input username -->
+    <input id="username" placeholder="Username">
+
+    <!-- input password -->
+    <input id="password" type="password" placeholder="Password">
+
+    <!-- tombol login, nanti manggil fungsi login di js -->
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- ini halaman utama web -->
+<div id="app" class="hidden">
+  <div class="app">
+
+    <!-- sidebar kiri -->
+    <div class="sidebar">
+      <h2>Menu</h2>
+
+      <h4>Tasks</h4>
+
+      <!-- ini buat ganti tampilan list -->
+      <p onclick="setActiveMenu(this); setView('my')">My Task</p>
+      <p onclick="setActiveMenu(this); setView('today')">Today</p>
+      <p onclick="setActiveMenu(this); setView('done')">Done</p>
+      <p onclick="setActiveMenu(this); setView('all')">All</p>
+
+      <!-- logout -->
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- bagian kanan -->
+    <div class="main">
+
+      <!-- halaman list task -->
+      <div id="listPage">
+        <div class="top">
+          <h2 id="title">My Task</h2>
+
+          <!-- buka popup tambah task -->
+          <button onclick="openModal()">+ Add Task</button>
+        </div>
+
+        <!-- tempat nampilin semua task -->
+        <ul id="taskList"></ul>
+      </div>
+
+      <!-- halaman detail task -->
+      <div id="detailPage" class="hidden">
+
+        <!-- balik ke list -->
+        <button onclick="back()">← Back</button>
+
+        <h3>Task Detail</h3>
+
+        <!-- edit judul -->
+        <input id="dTitle">
+
+        <!-- edit deskripsi -->
+        <textarea id="dDesc"></textarea>
+
+        <!-- edit tanggal -->
+        <input type="date" id="dDate">
+
+        <!-- edit prioritas -->
+        <select id="dPriority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <!-- tandain selesai -->
+        <button onclick="toggleDone()">✔ Done</button>
+
+        <!-- simpan perubahan -->
+        <button onclick="saveDetail()">Save</button>
+
+        <!-- hapus task -->
+        <button onclick="deleteTask()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- popup tambah task -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+
+    <h3>Add Task</h3>
+
+    <!-- isi judul -->
+    <input id="mTitle" placeholder="Judul task">
+
+    <!-- isi deskripsi -->
+    <textarea id="mDesc" placeholder="Deskripsi"></textarea>
+
+    <!-- pilih tanggal -->
+    <input type="date" id="mDate">
+
+    <!-- pilih prioritas -->
+    <select id="mPriority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <!-- simpan task -->
+    <button onclick="addTask()">Add</button>
+
+    <!-- tutup popup -->
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ini file js -->
+<script src="script.js"></script>
+</body>
+</html>
